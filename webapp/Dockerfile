@@ -5,8 +5,8 @@ ENV APP_ROOT /home/node/app
 RUN mkdir -p ${APP_ROOT}
 
 ADD package.json /tmp/package.json
-ADD package-lock.json /tmp/package-lock.json
-RUN cd /tmp && yarn
+ADD package-lock.json /tmp/yarn.lock
+RUN cd /tmp && yarn --frozen-lockfile
 RUN mv /tmp/node_modules ${APP_ROOT}
 
 WORKDIR ${APP_ROOT}
