@@ -1,0 +1,20 @@
+FROM node:16.15.1-alpine
+
+ENV APP_ROOT /home/node/app
+
+RUN mkdir -p ${APP_ROOT}
+
+ADD package.json /tmp/package.json
+ADD package-lock.json /tmp/package-lock.json
+RUN cd /tmp && yarn
+RUN mv /tmp/node_modules ${APP_ROOT}
+
+WORKDIR ${APP_ROOT}
+ADD . ${APP_ROOT}
+
+ARG API_URL
+ARG API_URL_BROWSER
+RUN API_URL=${API_URL} API_URL_BROWSER=${API_URL_BROWSER} npm run build
+
+CMD ["npm", "run", "start"]
+EXPOSE 8080
