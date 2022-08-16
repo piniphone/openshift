@@ -1,0 +1,36 @@
+import * as mongoose from 'mongoose';
+import { OperatorSchema } from './operator.schema';
+export declare class Station {
+    name: string;
+    latitude: number;
+    longitude: number;
+    marker: string;
+    url: string;
+    rating: number;
+    count_ratings: number;
+    count_comments: number;
+    count_images: number;
+    type: string;
+    online_status: string;
+    offline_status: string;
+    energy: string;
+    reservation: string;
+    reservation_link: string;
+    realtime: string;
+    favorite: boolean;
+    directions: string;
+    charge_price: string;
+    parking_price: string;
+    instructions: string;
+    open_time: string;
+    limit_time: string;
+    contact: string;
+    contact_phone: string;
+    contact_email: string;
+    editable: string;
+    created_at: string;
+    updated_at: string;
+    operator: typeof OperatorSchema;
+}
+export declare type StationDocument = Station & mongoose.Document;
+export declare const StationSchema: mongoose.Schema<Station, mongoose.Model<Station, any, any, any, any>, {}, {}, {}, {}, "type", Station>;
